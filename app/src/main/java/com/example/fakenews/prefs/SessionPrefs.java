@@ -29,7 +29,7 @@ public class SessionPrefs {
         return INSTANCE;
     }
 
-    private SessionPrefs(Context context) {
+    public SessionPrefs(Context context) {
         mPrefs = context.getApplicationContext()
                 .getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 

@@ -76,9 +76,16 @@ public class GoogleLoginActivity extends AppCompatActivity implements GoogleApiC
     protected void onStart(){
         super.onStart();
         //  Toast.makeText(getApplicationContext(),"Now onStart() calls", Toast.LENGTH_LONG).show(); //onStart Called
-
-
-        //  updateUI(account);
+        if (!SessionPrefs.get(this).isLoggedIn()) {
+            signInButton.setVisibility(View.VISIBLE);
+            signOutButton.setVisibility(View.INVISIBLE);
+        } else {
+            signInButton.setVisibility(View.INVISIBLE);
+            signOutButton.setVisibility(View.VISIBLE);
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+            return;
+        }
 
 
     }
@@ -112,6 +119,7 @@ public class GoogleLoginActivity extends AppCompatActivity implements GoogleApiC
                 });
         signInButton.setVisibility(View.VISIBLE);
         signOutButton.setVisibility(View.INVISIBLE);
+        new SessionPrefs(GoogleLoginActivity.this).logOut();
     }
 
     @Override
@@ -149,7 +157,6 @@ public class GoogleLoginActivity extends AppCompatActivity implements GoogleApiC
     private void sendIdTokenMail(String idtoken, final String mail){
 
         Call<LoginResponse> loginCall = restApi.login(new LoginBody(mail, idtoken));
-        // Log.w(TAG, "lalalala, por encolar el pedido" + restApi.toString());
         loginCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse

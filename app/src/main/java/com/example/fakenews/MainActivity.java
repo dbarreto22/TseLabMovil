@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.fakenews.R.id;
@@ -76,25 +75,6 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences preferencias = getApplicationContext().getSharedPreferences(SessionPrefs.PREFS_NAME, Context.MODE_PRIVATE);
     }
 
-    /** Called when the user taps the Send button */
-    public void sendMessage(View view) {
-        // Do something in response to button / Cambio displayMessageActivity por loginActivity
-        // Intent intent = new Intent(this, co..............m.example.fakenews.DisplayMessageActivity.class);
-        Intent intent = new Intent(this, com.example.fakenews.DisplayMessageActivity.class);
-        /*EditText editText = (EditText) findViewById(R.id.editText);
-        String message = editText.getText().toString();
-        RequestQueue requestQueue;
-
-        //Llamado al WS
-        Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
-        Network network = new BasicNetwork(new HurlStack());
-        requestQueue = new RequestQueue(cache, network);
-        requestQueue.start();<
-        //intent.putExtra(EXTRA_MESSAGE, message);
-*/
-        startActivity(intent);
-    }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(id.drawer_layout);
@@ -121,9 +101,8 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         // pruebo id de menú opcion_uno
-        if (id == R.id.opcion_uno) {
-            Intent intent = new Intent(this, com.example.fakenews.DisplayHechosActivity.class);
-            startActivity(intent);
+        if (id == R.id.listarHechos) {
+            goToListarHechos();
             return true;
         }
 
@@ -137,19 +116,25 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.opcion_uno) {
-            Intent i = new Intent(this, DisplayHechosActivity.class);
-            Log.w(TAG, "CALL DISPLAY HECHOS" + i.toString());
-            startActivity(i);
-
+        if (id == R.id.listarHechos) {
+            goToListarHechos();
         } else if (id == R.id.opcion_dos) {
-            Intent i = new Intent(this, DisplayHechosActivity.class);
-            startActivity(i);
+            goToSolicitarVerif();
         }
-
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void goToListarHechos(){
+        Intent i = new Intent(this, DisplayHechosActivity.class);
+        Log.w(TAG, "CALL DISPLAY HECHOS" + i.toString());
+        startActivity(i);
+    }
+
+    public void goToSolicitarVerif(){
+        Intent i = new Intent(this, SolicitudVerificacionActivity.class);
+        startActivity(i);
     }
 }

@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:text="Aquí se deberían ver los hechos"
+        android:text="Acá se debería ver algo"
 
         android:layout_marginLeft="51dp"
         android:id="@+id/textView5"

@@ -1,5 +1,7 @@
 package com.example.fakenews.apiWeb;
 
+import com.example.fakenews.apiModel.AddHechoBody;
+import com.example.fakenews.apiModel.DTRespuesta;
 import com.example.fakenews.apiModel.Hecho;
 import com.example.fakenews.apiModel.LoginBody;
 import com.example.fakenews.apiModel.LoginResponse;
@@ -9,28 +11,19 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface ApiInterface {
 
-    /*@GET("/albums/{id}")
-    public Call<Album> getAlbumWithID(@Path("id") int id);
-
-    @GET("/albums/")
-    public Call<List<Album>> getAllAlbums();
-
-    @POST("/albums")
-    public Call<Album> albumData(@Body Album data);*/
-
-    /*@GET("/admin/usuario")
-    public Call<List<DtUsuario>> getAllUsuarios();*/
 
     @GET("getHechos/")
     Call<List<Hecho>> getAllHechos();
 
-    //@Headers({"Content-type: application/json",
-            //"Accept: */*"})
-    @POST("citizen/login/")  // call<String>
+    @POST("citizen/addHecho/")
+    Call<DTRespuesta> crearHecho(@Header("Authorization") String authorization, @Header("Content-Type") String contentType, @Body AddHechoBody addHechoBody);
+
+    @POST("citizen/login/")
     Call<LoginResponse> login(@Body LoginBody loginBody);
 
 /*
