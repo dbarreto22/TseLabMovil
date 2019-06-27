@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fakenews.apiModel.LoginBody;
 import com.example.fakenews.apiModel.LoginResponse;
@@ -23,6 +24,8 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,15 +36,17 @@ import retrofit2.Response;
 
 public class GoogleLoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener, GoogleApiClient.ConnectionCallbacks {
 
-    GoogleApiClient mGoogleApiClient;
     private static final int RC_SIGN_IN = 9001;
     private static final String TAG = "SignInActivity >>>> ";
+    GoogleApiClient mGoogleApiClient;
     SignInButton signInButton;
     Button signOutButton;
+    Button toMain;
     TextView statusTextView;
     GoogleSignInClient mGoogleSignInClient;
     String url = "https://r179-27-99-70.ir-static.anteldata.net.uy:8443/FakeNews-web/RESTServices/";
     private ApiInterface restApi;
+    private String token_fire;
 
 
     @Override
@@ -67,8 +72,31 @@ public class GoogleLoginActivity extends AppCompatActivity implements GoogleApiC
         signInButton = findViewById(R.id.sign_in_button);
         signOutButton = findViewById(R.id.sign_out_button);
         statusTextView = findViewById(R.id.textView);
+        toMain = findViewById(R.id.button_to_main);
+        toMain.setOnClickListener(this);
         signInButton.setOnClickListener(this);
         signOutButton.setOnClickListener(this);
+
+
+        // Obtengo token firebase
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        token_fire = task.getResult().getToken();
+
+                        // Log and toast
+                        Log.d(TAG, token_fire);
+                        Toast.makeText(GoogleLoginActivity.this, token_fire, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
 
     } // onCreate
 
@@ -82,9 +110,9 @@ public class GoogleLoginActivity extends AppCompatActivity implements GoogleApiC
         } else {
             signInButton.setVisibility(View.INVISIBLE);
             signOutButton.setVisibility(View.VISIBLE);
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-            return;
+            //startActivity(new Intent(this, MainActivity.class));
+            //finish();
+            //return;
         }
 
 
@@ -100,17 +128,19 @@ public class GoogleLoginActivity extends AppCompatActivity implements GoogleApiC
             case R.id.sign_out_button:
                 signOut();
                 break;
+            case R.id.button_to_main:
+                goToMain();
+                break;
         }
     }
 
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-
         startActivityForResult(signInIntent, RC_SIGN_IN);
 
     }
 
-    private void signOut() {
+    public void signOut() {
         mGoogleSignInClient.signOut()
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
@@ -156,7 +186,7 @@ public class GoogleLoginActivity extends AppCompatActivity implements GoogleApiC
 
     private void sendIdTokenMail(String idtoken, final String mail){
 
-        Call<LoginResponse> loginCall = restApi.login(new LoginBody(mail, idtoken));
+        Call<LoginResponse> loginCall = restApi.login(new LoginBody(mail, idtoken, token_fire));
         loginCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse
@@ -225,6 +255,11 @@ public class GoogleLoginActivity extends AppCompatActivity implements GoogleApiC
     @Override
     public void onConnected(@Nullable Bundle bundle) {
 
+    }
+
+    public void goToMain(){
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
     }
 
     @Override

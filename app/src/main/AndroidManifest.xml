@@ -13,11 +13,35 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".SolicitudVerificacionActivity"></activity>
 
+        <!--meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" /-->
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="false" />
+        <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/fakenews"/>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCeUn6BQYQEE8Ktb-IWtP-hT_cyQz__ldA" /> <!-- android:value="AIzaSyD8afXS1jMfiwpXV1gU7vWAY26JbtAPhrk" / -->
+            android:value="AIzaSyCeUn6BQYQEE8Ktb-IWtP-hT_cyQz__ldA" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id"/>
+
+        <service
+            android:name=".services.MyFirebaseMessagingService">
+            <!--android:exported="false"-->
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".SusctripcionActivity" />
+        <activity android:name=".SolicitudVerificacionActivity" />
         <activity android:name=".GoogleLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,6 +69,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".GoogleLoginActivity" />
         </activity>
+
     </application>
 
 </manifest>

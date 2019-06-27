@@ -26,6 +26,9 @@ public interface ApiInterface {
     @POST("citizen/login/")
     Call<LoginResponse> login(@Body LoginBody loginBody);
 
+    @POST("citizen/suscripcion/")
+    Call<DTRespuesta> suscripcion(@Header("Authorization") String authorization, @Header("Content-Type") String contentType, @Body String mail);
+
 /*
     @POST("estudiante/token/")
     Call<String> enviarTokenFirebase(@Header("Authorization") String authorization, @Header("Content-Type") String contentType, @Body TokenFirebaseBody tokenFirebaseBody);

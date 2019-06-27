@@ -95,6 +95,7 @@ public class SolicitudVerificacionActivity extends AppCompatActivity {
                                 }
                         } else {
                             Log.w(TAG, "response error: " + response.errorBody().toString());
+                            Log.w(TAG, "RESPONSE: "+ response.toString());
                             Toast.makeText(SolicitudVerificacionActivity.this, "Error: no se ha podido recibir respuesta del servidor.", Toast.LENGTH_SHORT).show();
                             goHome();
                         }

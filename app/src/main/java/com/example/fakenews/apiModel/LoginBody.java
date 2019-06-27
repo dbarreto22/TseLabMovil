@@ -15,10 +15,22 @@ public class LoginBody implements Serializable {
     @SerializedName("token_id")
     @Expose
     private String token_id;
+    @SerializedName("token_firebase")
+    @Expose
+    private String token_firebase;
 
-    public LoginBody(String mail, String token_id) {
+    public LoginBody(String mail, String token_id, String token_firebase) {
         this.mail = mail;
         this.token_id = token_id;
+        this.token_firebase = token_firebase;
+    }
+
+    public String getToken_firebase() {
+        return token_firebase;
+    }
+
+    public void setToken_firebase(String token_firebase) {
+        this.token_firebase = token_firebase;
     }
 
     public String getMail() {
