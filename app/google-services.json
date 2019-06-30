@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "114902952681",
+    "firebase_url": "https://tselabmovil.firebaseio.com",
+    "project_id": "tselabmovil",
+    "storage_bucket": "tselabmovil.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:114902952681:android:bc49b9c02a0cc799",
+        "android_client_info": {
+          "package_name": "com.example.fakenews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "114902952681-71mqkju617se90hack0egd2092fq2lt8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fakenews",
+            "certificate_hash": "b097cd195c8e56b4f862b9062a77d662c73b3be1"
+          }
+        },
+        {
+          "client_id": "114902952681-92js89hpolkapv56lp85pdqhu1nq3r67.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fakenews",
+            "certificate_hash": "0ea1e9d53387fbe96c59e86852d2cf3d7490c902"
+          }
+        },
+        {
+          "client_id": "114902952681-nhlhqi6itnpko0qf066m6ib6aq6cskch.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8afXS1jMfiwpXV1gU7vWAY26JbtAPhrk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "114902952681-fen22c495m44u3737eqojl6bhe6up3ag.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
