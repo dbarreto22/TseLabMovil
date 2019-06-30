@@ -53,7 +53,7 @@ public class SolicitudVerificacionActivity extends AppCompatActivity {
 
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        // Ajustar teclado software (soft-keyboard) para que no mueva los elementos de la pantalla cuando aparezca
+        // Ajustar teclado
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         tituloHecho = findViewById(R.id.tituloHecho);

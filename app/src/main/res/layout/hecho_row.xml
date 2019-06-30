@@ -13,7 +13,10 @@
         android:id="@+id/url"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:autoLink="all"
+        android:clickable="true"
+        android:linksClickable="true"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/calificacion"
@@ -34,54 +37,3 @@
         />
 
 </LinearLayout>
-
-
-<!--?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="10dp">
-    <support_simple_spinner_dropdown_item>
-
-    <support_simple_spinner_dropdown_item<androidx.appcompat.widget.AppCompatSpinner
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></androidx.appcompat.widget.AppCompatSpinner>-->
-
-<!--        android:textColor="@android:color/black"
-android:textColor="@android:color/black"
-android:textColor="@android:color/black"
-android:textColor="@android:color/black"
-android:textColor="@android:color/black"
-
-    <TextView
-        android:id="@+id/titulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/url"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         />
-
-    <TextView
-        android:id="@+id/calificacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         />
-
-    <TextView
-        android:id="@+id/fechaVerificacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         />
-
-    <TextView
-        android:id="@+id/estado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         />
-    </support_simple_spinner_dropdown_item>
-</LinearLayout>
--->

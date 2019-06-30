@@ -15,6 +15,7 @@ public class SessionPrefs {
     public static final String PREF_USER_TOKEN = "PREF_USER_TOKEN";
     public static final String PREF_USER_EMAIL = "PREF_USER_EMAIL";
     public static final String PREF_TOKEN_FIREBASE = "PREF_TOKEN_FIREBASE";
+    public static final String TAG = "Sesion Prefs";
 
     private SharedPreferences mPrefs;
 
@@ -59,6 +60,7 @@ public class SessionPrefs {
         editor.putString(PREF_USER_EMAIL, null);
         editor.putString(PREF_TOKEN_FIREBASE, null);
         editor.apply();
+        Log.i(TAG, "Logged in: " + mIsLoggedIn);
     }
 
     private void timeout(){
